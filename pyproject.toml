@@ -1,2 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swe-agent"
+version = "0.1.0"
+description = "Agentic software engineering assistant"
+requires-python = ">=3.9"
+
+dependencies = [
+    "openai",
+    "pytest",
+    "coverage",
+    "ruff",
+]
+
 [project.scripts]
 swe-agent = "swe_agent.cli:main"
