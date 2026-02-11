@@ -16,4 +16,4 @@ dependencies = [
 ]
 
 [project.scripts]
-swe-agent = "swe_agent.cli:main"
+swe-agent = "src.cli:main"
