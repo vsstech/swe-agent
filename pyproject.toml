@@ -14,8 +14,6 @@ dependencies = [
     "coverage",
     "ruff",
 ]
-[tool.setuptools.packages.find]
-where = ["src"]
 
 [project.scripts]
-swe-agent = "cli:main"
+swe-agent = "src.cli:main"
