@@ -13,7 +13,8 @@ dependencies = [
     "pytest",
     "coverage",
     "ruff",
+    "python-dotenv"
 ]
 
 [project.scripts]
-swe-agent = "src.cli:main"
+swe-agent = "swe_agent.cli:main"

@@ -2,18 +2,18 @@
 import os
 from typing import Dict, Any
 
-from src.analyze import run_ruff
-from src.coverage import run_pytest_coverage
-from src.coverage_parser import parse_coverage_xml
-from src.test_suggester import suggest_tests_for_file
-from src.dependencies import (
+from swe_agent.analyze import run_ruff
+from swe_agent.code_coverage import run_pytest_coverage
+from swe_agent.coverage_parser import parse_coverage_xml
+from swe_agent.test_suggester import suggest_tests_for_file
+from swe_agent.dependencies import (
     find_outdated_dependencies,
     find_vulnerable_dependencies,
 )
-from src.test_generation_pipeline import  generate_test_file
-from src.pr_creator import create_pr
-from src.report_md import generate_markdown_report,write_markdown_report
-from src.report_sarif import write_sarif,generate_sarif
+from swe_agent.test_generation_pipeline import  generate_test_file
+from swe_agent.pr_creator import create_pr
+from swe_agent.report_md import generate_markdown_report,write_markdown_report
+from swe_agent.report_sarif import write_sarif,generate_sarif
 
 def analyze_repo(repo_path: str, reports_dir: str, generate_tests=False) -> Dict[str, Any]:
     os.makedirs(reports_dir, exist_ok=True)

@@ -1,5 +1,5 @@
 # 1/test_analyze.py
-from src.analyze import RuffResult,run_ruff
+from swe_agent.analyze import RuffResult,run_ruff
 
 
 def test_run_ruff_returns_result(tmp_path):

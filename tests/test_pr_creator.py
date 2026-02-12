@@ -1,4 +1,4 @@
-from src.pr_creator import create_pr
+from swe_agent.pr_creator import create_pr
 import os
 import pytest
 

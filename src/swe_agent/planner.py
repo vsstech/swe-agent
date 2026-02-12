@@ -1,5 +1,8 @@
 # src/planner.py
-import openai
+from openai import OpenAI
+from swe_agent.config import get_openai_key
+
+client = OpenAI(api_key=get_openai_key())
 
 SYSTEM_PROMPT = """
 You are a software engineering agent.
@@ -26,7 +29,7 @@ Observations:
 {chr(10).join(observations)}
 """
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
@@ -35,4 +38,4 @@ Observations:
         temperature=0,
     )
 
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message.content.strip()

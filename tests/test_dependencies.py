@@ -1,5 +1,5 @@
 # tests/test_dependencies.py
-from src.dependencies import find_outdated_dependencies, find_vulnerable_dependencies
+from swe_agent.dependencies import find_outdated_dependencies, find_vulnerable_dependencies
 import subprocess
 import json
 

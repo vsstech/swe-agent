@@ -1,4 +1,4 @@
-from src.report_md import generate_markdown_report
+from swe_agent.report_md import generate_markdown_report
 
 
 def test_generate_markdown_report():

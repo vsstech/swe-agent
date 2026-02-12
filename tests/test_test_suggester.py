@@ -1,5 +1,5 @@
 # tests/test_test_suggester.py
-from src.test_suggester import suggest_tests_for_file
+from swe_agent.test_suggester import suggest_tests_for_file
 
 
 def test_suggest_tests_for_file(tmp_path):

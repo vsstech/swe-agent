@@ -2,9 +2,8 @@
 from dataclasses import dataclass
 from typing import List, Dict, Any
 
-from src.planner import plan_next_action
-from src.pipeline import analyze_repo
-
+from swe_agent.planner import plan_next_action
+from swe_agent.pipeline import analyze_repo
 MAX_STEPS = 5
 
 @dataclass

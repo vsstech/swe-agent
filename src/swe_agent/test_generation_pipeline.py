@@ -1,6 +1,6 @@
 # src/test_generation_pipeline.py
 from pathlib import Path
-from src.llm_test_writer import generate_tests
+from swe_agent.llm_test_writer import generate_tests
 
 
 def generate_test_file(

@@ -1,8 +1,10 @@
 # src/llm_test_writer.py
 from dataclasses import dataclass
 from typing import List
-import openai
-import os
+from openai import OpenAI
+from swe_agent.config import get_openai_key
+
+client = OpenAI(api_key=get_openai_key())
 
 
 @dataclass
@@ -37,7 +39,7 @@ Test requirements:
 Write pytest tests for module: {module_name}
 """
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4o-mini",  # or your preferred model
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
@@ -46,4 +48,4 @@ Write pytest tests for module: {module_name}
         temperature=0.2,
     )
 
-    return response.choices[0].message["content"]
+    return response.choices[0].message.content.strip()

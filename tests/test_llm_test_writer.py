@@ -1,4 +1,4 @@
-from src.llm_test_writer import generate_tests
+from swe_agent.llm_test_writer import generate_tests
 
 
 def test_generate_tests(monkeypatch):

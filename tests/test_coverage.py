@@ -1,5 +1,5 @@
 # 1/test_coverage.py
-from src.coverage import run_pytest_coverage,CoverageResult
+from swe_agent.coverage import run_pytest_coverage,CoverageResult
 
 
 def test_run_pytest_coverage_creates_xml(tmp_path):

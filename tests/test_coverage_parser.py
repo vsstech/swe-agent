@@ -1,5 +1,5 @@
 # 1/test_coverage_parser.py
-from src.coverage_parser import parse_coverage_xml,FileCoverage
+from swe_agent.coverage_parser import parse_coverage_xml,FileCoverage
 
 
 def test_parse_coverage_xml(tmp_path):

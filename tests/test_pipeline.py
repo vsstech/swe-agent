@@ -1,5 +1,5 @@
 # tests/test_pipeline.py
-from src.pipeline import analyze_repo
+from swe_agent.pipeline import analyze_repo
 
 
 def test_analyze_repo_pipeline(tmp_path):
