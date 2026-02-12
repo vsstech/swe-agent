@@ -14,7 +14,8 @@ dependencies = [
     "coverage",
     "ruff",
     "python-dotenv",
-    "gitpython"
+    "gitpython",
+    "PyGithub"
 ]
 
 [project.scripts]
