@@ -13,7 +13,8 @@ dependencies = [
     "pytest",
     "coverage",
     "ruff",
-    "python-dotenv"
+    "python-dotenv",
+    "gitpython"
 ]
 
 [project.scripts]
