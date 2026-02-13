@@ -1,49 +1,56 @@
 # src/agent.py
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Dict, Any
 
 from swe_agent.planner import plan_next_action
-from swe_agent.pipeline import analyze_repo
-MAX_STEPS = 5
+from swe_agent.tool_executor import execute_action
+MAX_STEPS = 8
 
 @dataclass
 class AgentState:
     goal: str
-    observations: List[str]
-    actions_taken: List[str]
-    report: Dict[str, Any]
+    repo_path: str
+    reports_dir: str
+
+    observations: List[str] = field(default_factory=list)
+    actions_taken: List[str] = field(default_factory=list)
+
+    report: Dict[str, Any] = field(default_factory=dict)
+
+    coverage_percent: float | None = None
+    tests_generated: bool = False
 
 
-def run_agent(repo_path: str, goal: str):
+def run_agent(repo_path: str, reports_dir: str, goal: str):
+    print("🤖 SWE Agent starting")
+    print(f"📁 Repo path: {repo_path}")
+    print(f"🎯 Goal: {goal}")
     state = AgentState(
         goal=goal,
-        observations=[],
-        actions_taken=[],
-        report={},
+        repo_path=repo_path,
+        reports_dir=reports_dir
     )
 
     for _ in range(MAX_STEPS):
         action = plan_next_action(state.goal, state.observations)
+        if action in state.actions_taken:
+            state.observations.append(f"Action {action} already taken, stopping")
+            break
+
         state.actions_taken.append(action)
 
         if action == "stop":
             break
 
-        if action == "run_tests":
-            state.report = analyze_repo(repo_path, "agent-reports")
-            cov = state.report.get("coverage", {})
-            state.observations.append(f"Coverage: {cov}")
+        execute_action(state, action)
 
-        elif action == "generate_tests":
-            state.observations.append("Generated unit tests")
-
-        elif action == "create_pr":
-            state.observations.append("PR created")
-
-        else:
-            state.observations.append(f"Action {action} executed")
+        # hard safety stop
+        if state.coverage_percent and state.coverage_percent >= 80:
+            state.observations.append("Coverage goal met")
+            break
 
     return state
+
 
 
 
